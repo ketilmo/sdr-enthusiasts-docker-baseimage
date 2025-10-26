@@ -3,9 +3,6 @@
 # This script can be sourced in services.d run and cont-init.d/cont-finish.d modules
 # It provides some basic common functions
 
-# redirect stderr to stdout so it's picked up in the docker logs
-exec 2>&1
-
 # all errors will show a line number and the command used to produce the error
 # shellcheck disable=SC2148,SC2164
 SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd)/$(basename "$0")"
@@ -55,6 +52,10 @@ s6wrap=(s6wrap --quiet --timestamps --prepend="$SCRIPT_NAME" --args)
 # meant to be used in the script that is the child to s6-supervise
 function stop_service() {
     _SERVICE=$(ps -q$(ps -cp $$ -o ppid="") -o args= | grep -F s6-supervise | cut -d' ' -f2)
+    if [[ -z ${_SERVICE} ]]; then
+        echo "unable to stop service (possibly not called from by s6 service)"
+        exit 1
+    fi
     s6-svc -d /run/service/"${_SERVICE}"
     # just in case this doesn't work, exec an infinite sleep
     # if the service stopping works, the sleep will just be terminated

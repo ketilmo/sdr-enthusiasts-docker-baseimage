@@ -10,6 +10,9 @@ There is going to be no wide release until Trixie is officially released, all im
 
 The wider the participation in testing, the faster we can get to a stable release. If you want to help test the images, please follow the instructions below.
 
+> [!WARNING]
+> ***IF YOU ARE RUNNING ADSB.IM THIS DOES NOT APPLY TO YOU. TESTING OF THESE IMAGES WILL BE DONE WHEN THE MAINTAINERS OF ADSB.IM ARE READY. RUNNING ANY OF THESE COMMANDS WILL LIKELY BREAK YOUR SETUP.***
+
 ## Testing procedure
 
 For anyone who wants to help test the trixie migration, please follow these steps:
@@ -33,9 +36,13 @@ python3 update_docker_compose.py --help
 By default, it will replace any images currently in your `docker-compose.yml` file with any images we've updated to `debian trixie`. You can specify to only use "safe" images, which are images that have been tested and confirmed to work with your CPU's architecture.
 
 > [!IMPORTANT]
-> "Safe" images does not mean they're 100% without bugs. Safe images are those that have been tested and confirmed to work with your CPU's architecture by a user or developer, but every person's setup is different and you may run in to a problem based on your specific setup.
+> "Safe" images does not mean they're 100% without bugs. Safe images are those that have been tested and confirmed to work with your CPU's architecture by a user or developer (generally), but every person's setup is different and you may run in to a problem based on your specific setup.
 
 It is also going to "pin" the images to a fixed tag, so that you can easily roll back to the previous version if needed. If you want to move to the latest images, rerun the script and it will fetch the latest images and update as appropriate.
+
+## FEEDBACK
+
+If you are running an image that is marked as "ready for testing" but the CPU architecture is not marked as tested, please test it and report back so we can mark it as tested.
 
 ## Notes about the matrix below
 
@@ -43,7 +50,7 @@ Each image we intend to move over to trixie is listed below, along with its stat
 
 You can see if the build is working. That means we've successfully built the image on GitHub CI, but that does not mean it is ready for testing.
 
-The ready for testing column indicates that the image has been tested on at least one architecture and is ready for wider testing. You can see which architectures have been tested. Just because there is a ❌ in the column does not mean it will not work, it just means we have not tested it on that architecture yet.
+The ready for testing column indicates that the image has been tested on at least one architecture (generally, but not always. Some images aren't applicable to my setup) and is ready for wider testing. You can see which architectures have been tested. Just because there is a ❌ in the column does not mean it will not work, it just means we have not tested it on that architecture yet.
 
 ## Matrix
 
@@ -52,7 +59,9 @@ The ready for testing column indicates that the image has been tested on at leas
 | Key | Description |
 | -- | -- |
 | ✅ | Completed |
-| ❌ | Not completed |
+| 🟡 | Work In Progress |
+| 💬 | Ready for testing. Feedback requested |
+| ❌ | Will Not Complete |
 
 ### Base Images
 
@@ -72,65 +81,65 @@ The ready for testing column indicates that the image has been tested on at leas
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `acarshub` | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `beast-splitter` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `flightradar24` | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `adsbhub` | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `opensky` | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `planefinder` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `acars_router` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `airspy` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `reversewebproxy` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `radar1090` | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `acarshub` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `beast-splitter` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| `flightradar24` | ✅ | ✅ | ✅ | 🟡 | 🟡 |
+| `adsbhub` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `opensky` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `planefinder` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `acars_router` |  | ✅ | ✅ | 💬 | 💬 |
+| `airspy` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `reversewebproxy` | ✅ | ✅ | 💬 | 💬 | 💬 |
+| `radar1090` | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
 | `flightairmap` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `shipfeeder` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `aprs-tracker` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `vessel-alert` | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `shipfeeder` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| `aprs-tracker` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| `vessel-alert` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 
 #### Base Image: `mlat-client`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `sdr-map` | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `sdr-map` | ✅ | ✅ | ✅ | 💬 | 💬 |
 
 #### Base Image: `planefence_base`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `planefence` | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `planefence` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 
 #### Base Image: `soapy-full`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `rtlsdrairband` | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `rtlsdrairband` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 
 #### Base Image: `wreadsb`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `airnav` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `radarvirtuel` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `tar1090` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `ultrafeeder` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `sdrplay-1090` | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `airnav` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| `radarvirtuel` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `tar1090` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| `ultrafeeder` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| `sdrplay-1090` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 
 #### Base Image: `acars-decoder-soapy`
 
 | Image Name | Build Works | Ready for Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `acarsdec` | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `dumpvdl2` | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `vdlm2dec` | ✅ | ❌ | ✅ | ❌ | ❌ |
-| `dumphfdl` | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `hfdlobserver` | ✅ | ❌ | ❌ | ❌ | ❌ |
+| `acarsdec` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `dumpvdl2` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `vdlm2dec` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `dumphfdl` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| `hfdlobserver` | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
 
 #### Base Image: `dump978-full`
 
 | Image Name | Build Works | Ready for Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `dump978` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `piaware` | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `dump978` | ✅ | ✅ | 💬 | 💬 | 💬
+| `piaware` | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
 
 ## Tasks
 
@@ -159,3 +168,5 @@ The ready for testing column indicates that the image has been tested on at leas
 ## Current blockers
 
 - hfdlobserver does not run. Incompatible with Python 3.13
+- docker-airnavradar does not build. Issue with the `libglib2.0-0` dependency and debian trixie.
+- piaware builds but does not run. It seems to be an issue with starting mlat-client and python packaging.
