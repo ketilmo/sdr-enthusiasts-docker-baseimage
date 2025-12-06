@@ -16,6 +16,7 @@ RUN \
   pushd /src/readsb && \
   make \
   RTLSDR=no \
+  WITH_UUIDS=yes \
   TRACKS_UUID=yes \
   PRINT_UUIDS=yes \
   AIRCRAFT_HASH_BITS=14 \
