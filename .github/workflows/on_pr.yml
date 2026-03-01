@@ -404,7 +404,6 @@ jobs:
       #     echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
       #     gh workflow run --ref main --repo sdr-enthusiasts/a
 
-
   trigger_build_acars_soapy:
     name: Trigger deploy of acars decoder soapy images
     needs: [deploy_ghcr_acars-decoder-soapy]
@@ -421,11 +420,6 @@ jobs:
         run: |
           echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
           gh workflow run --ref main --repo sdr-enthusiasts/docker-dumpvdl2 deploy.yml -f reason="$WORKFLOW_REASON" -f use_test_image=true
-      - name: dumpvdl2dec
-        continue-on-error: true
-        run: |
-          echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
-          gh workflow run --ref main --repo sdr-enthusiasts/docker-vdlm2dec deploy.yml -f reason="$WORKFLOW_REASON" -f use_test_image=true
       - name: dumphfdl
         continue-on-error: true
         run: |

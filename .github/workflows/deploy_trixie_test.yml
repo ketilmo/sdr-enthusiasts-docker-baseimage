@@ -310,11 +310,6 @@ jobs:
         run: |
           echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
           gh workflow run --ref main --repo sdr-enthusiasts/docker-dumpvdl2 deploy_trixie.yml -f reason="$WORKFLOW_REASON"
-      - name: dumpvdl2dec
-        continue-on-error: true
-        run: |
-          echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
-          gh workflow run --ref main --repo sdr-enthusiasts/docker-vdlm2dec deploy_trixie.yml -f reason="$WORKFLOW_REASON"
       - name: dumphfdl
         continue-on-error: true
         run: |

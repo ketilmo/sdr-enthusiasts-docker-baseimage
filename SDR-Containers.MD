@@ -33,7 +33,6 @@ All links will be for the `:latest` tag for each container.
 | [docker-acarsdec](https://github.com/sdr-enthusiasts/docker-acarsdec) | `NONE` | `ghcr.io/sdr-enthusiasts/docker-acarsdec:latest` |
 | [docker-acarshub](https://github.com/sdr-enthusiasts/docker-acarshub) | `NONE` | `ghcr.io/sdr-enthusiasts/docker-acarshub:latest` |
 | [docker-dumpvdl2](https://github.com/sdr-enthusiasts/docker-dumpvdl2) | `NONE` | `ghcr.io/sdr-enthusiasts/docker-dumpvdl2:latest` |
-| [docker-vdlm2dec](https://github.com/sdr-enthusiasts/docker-vdlm2dec) | `NONE` | `ghcr.io/sdr-enthusiasts/docker-vdlm2dec:latest` |
 
 ## Miscellaneous
 

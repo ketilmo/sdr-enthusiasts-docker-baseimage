@@ -17,7 +17,6 @@
 | [dumpvdl2][dumpvdl2.repo] | [![Build][dumpvdl2.badge-build]][dumpvdl2.build] | [![Lint][dumpvdl2.badge-test]][dumpvdl2.test] | [![Updates][dumpvdl2.badge-updates]][dumpvdl2.updates] | ![Issues][dumpvdl2.badge-issues] | ![PRs][dumpvdl2.badge-prs] |
 | [dumphfdl][dumphfdl.repo] | [![Build][dumphfdl.badge-build]][dumphfdl.build] | [![Lint][dumphfdl.badge-test]][dumphfdl.test] | [![Updates][dumphfdl.badge-updates]][dumphfdl.updates] | ![Issues][dumphfdl.badge-issues] | ![PRs][dumphfdl.badge-prs] |
 | [hfdl observer][hfdlobserver.repo] | [![Build][hfdlobserver.badge-build]][hfdlobserver.build] | — | [![Updates][hfdlobserver.badge-updates]][hfdlobserver.updates] | ![Issues][hfdlobserver.badge-issues] | ![PRs][hfdlobserver.badge-prs] |
-| [vdlm2dec][vdlm2dec.repo] | [![Build][vdlm2dec.badge-build]][vdlm2dec.build] | [![Lint][vdlm2dec.badge-test]][vdlm2dec.test] | [![Updates][vdlm2dec.badge-updates]][vdlm2dec.updates] | ![Issues][vdlm2dec.badge-issues] | ![PRs][vdlm2dec.badge-prs] |
 
 ## ADSB Images
 
@@ -158,17 +157,6 @@
 [hfdlobserver.badge-updates]: https://github.com/sdr-enthusiasts/docker-hfdlobserver/actions/workflows/pre-commit-updates.yaml/badge.svg
 [hfdlobserver.badge-issues]: https://img.shields.io/github/issues/sdr-enthusiasts/docker-hfdlobserver
 [hfdlobserver.badge-prs]: https://img.shields.io/github/issues-pr/sdr-enthusiasts/docker-hfdlobserver
-
-<!-- vdlm2dec -->
-[vdlm2dec.repo]: https://github.com/sdr-enthusiasts/docker-vdlm2dec
-[vdlm2dec.build]: https://github.com/sdr-enthusiasts/docker-vdlm2dec/actions/workflows/deploy.yml
-[vdlm2dec.test]: https://github.com/sdr-enthusiasts/docker-vdlm2dec/actions/workflows/linting.yml
-[vdlm2dec.updates]: https://github.com/sdr-enthusiasts/docker-vdlm2dec/actions/workflows/pre-commit-updates.yaml
-[vdlm2dec.badge-build]: https://github.com/sdr-enthusiasts/docker-vdlm2dec/actions/workflows/deploy.yml/badge.svg
-[vdlm2dec.badge-test]: https://github.com/sdr-enthusiasts/docker-vdlm2dec/actions/workflows/linting.yml/badge.svg
-[vdlm2dec.badge-updates]: https://github.com/sdr-enthusiasts/docker-vdlm2dec/actions/workflows/pre-commit-updates.yaml/badge.svg
-[vdlm2dec.badge-issues]: https://img.shields.io/github/issues/sdr-enthusiasts/docker-vdlm2dec
-[vdlm2dec.badge-prs]: https://img.shields.io/github/issues-pr/sdr-enthusiasts/docker-vdlm2dec
 
 <!-- ADSB Hub -->
 [adsbhub.repo]: https://github.com/sdr-enthusiasts/docker-adsbhub
