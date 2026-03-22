@@ -30,7 +30,7 @@ jobs:
     name: Run hadolint against docker files
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v6.0.0
+      - uses: actions/checkout@v6.0.2
       - name: Pull hadolint/hadolint:latest Image
         run: docker pull hadolint/hadolint:latest
       - name: Run hadolint against Dockerfiles
@@ -54,7 +54,7 @@ jobs:
       dump978_full_changed: ${{ steps.changed-files-dump978-full.outputs.any_changed }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
       - name: Get branch name
@@ -67,7 +67,7 @@ jobs:
           main-branch-name: ${{ steps.branch-name.outputs.base_ref_branch }}
       - name: Check basefile change
         id: changed-files-specific
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -75,7 +75,7 @@ jobs:
 
       - name: Check mlatclient change
         id: changed-files-mlatclient
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -84,7 +84,7 @@ jobs:
 
       - name: Check planefence_base change
         id: changed-files-planefence_base
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -93,7 +93,7 @@ jobs:
 
       - name: Check for acars decoder
         id: changed-files-acarsdecoder
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -103,7 +103,7 @@ jobs:
 
       - name: Check for soapy
         id: changed-files-soapy
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -113,7 +113,7 @@ jobs:
 
       - name: Check for wreadsb
         id: changed-files-wreadsb
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -124,7 +124,7 @@ jobs:
 
       - name: Check for acars decoder soapy
         id: changed-files-acarsdecoder-soapy
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -135,7 +135,7 @@ jobs:
 
       - name: Check for dump978-full
         id: changed-files-dump978-full
-        uses: tj-actions/changed-files@v47.0.0
+        uses: tj-actions/changed-files@v47.0.4
         with:
           base_sha: ${{ steps.last_successful_commit_pull_request.outputs.base }}
           files: |
@@ -404,7 +404,6 @@ jobs:
       #     echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
       #     gh workflow run --ref main --repo sdr-enthusiasts/a
 
-
   trigger_build_acars_soapy:
     name: Trigger deploy of acars decoder soapy images
     needs: [deploy_ghcr_acars-decoder-soapy]
@@ -421,11 +420,6 @@ jobs:
         run: |
           echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
           gh workflow run --ref main --repo sdr-enthusiasts/docker-dumpvdl2 deploy.yml -f reason="$WORKFLOW_REASON" -f use_test_image=true
-      - name: dumpvdl2dec
-        continue-on-error: true
-        run: |
-          echo "$WORKFLOW_AUTH_TOKEN" | gh auth login --with-token
-          gh workflow run --ref main --repo sdr-enthusiasts/docker-vdlm2dec deploy.yml -f reason="$WORKFLOW_REASON" -f use_test_image=true
       - name: dumphfdl
         continue-on-error: true
         run: |

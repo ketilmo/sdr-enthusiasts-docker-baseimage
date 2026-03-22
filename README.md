@@ -49,7 +49,7 @@ RUN ...
 | Tag               | Sub-tags Using                 | Up-Stream Projects Using |
 | ----------------- | ------------------------------ | ------------------------ |
 | `base`            | `ALL`                          | [sdr-enthusiasts/acars_router][acars_router],[sdr-enthusiasts/airspy-adsb][airspy], [sdr-enthusiasts/docker-adsbhub][docker-adsbhub], [sdr-enthusiasts/docker-opensky-network][docker-opensky-network], [sdr-enthusiasts/docker-rtlsdrairband][docker-rtlsdrairband], [sdr-enthusiasts/docker-flightradar24][docker-flightradar24], [sdr-enthusiasts/docker-planefinder][docker-planefinder], [sdr-enthusiasts/docker-acarshub][docker-acarshub], [sdr-enthusiasts/docker-adsbexchange][docker-adsbexchange], [kx1t/docker-planefence][docker-planefence], [sdr-enthusiasts/docker-reversewebproxy][docker-reversewebproxy], [kx1t/docker-raspberry-noaa-v2][docker-raspberry-noaa-v2] |
-| `acars-decoder`   | -                              | [sdr-enthusiasts/docker-acarsdec][docker-acarsdec], [sdr-enthusiasts/docker-dumpvdl2][docker-dumpvdl2], [sdr-enthusiasts/docker-vdlm2dec][docker-vdlm2dec] |
+| `acars-decoder`   | -                              | [sdr-enthusiasts/docker-acarsdec][docker-acarsdec], [sdr-enthusiasts/docker-dumpvdl2][docker-dumpvdl2] |
 | `rtlsdr`          | `acars-decoder`, `readsb-full`, `wreadsb` | [sdr-enthusiasts/acars-oxide][acars-oxide] |
 | `readsb-full`     | -                              | [sdr-enthusiasts/docker-readsb-protobuf][docker-readsb-protobuf] |
 | `dump978-full`    | -                              | [sdr-enthusiasts/docker-piaware][docker-piaware], [sdr-enthusiasts/docker-dump978][docker-dump978]  |
@@ -82,7 +82,6 @@ RUN ...
 [docker-reversewebproxy]: https://github.com/sdr-enthusiasts/docker-reversewebproxy
 [docker-rtlsdrairband]: https://github.com/sdr-enthusiasts/docker-rtlsdrairband
 [docker-tar1090]: https://github.com/sdr-enthusiasts/docker-tar1090
-[docker-vdlm2dec]: https://github.com/sdr-enthusiasts/docker-vdlm2dec
 [flightaware/dump978]: https://github.com/flightaware/dump978
 [fredclausen]: https://github.com/fredclausen
 [gawk]: https://packages.debian.org/stable/gawk
@@ -100,15 +99,10 @@ RUN ...
 [ncat]: https://packages.debian.org/stable/ncat
 [net-tools]: https://packages.debian.org/stable/net-tools
 [procps]: https://packages.debian.org/stable/procps
-[python3-pip]: https://packages.debian.org/stable/python3-pip
-[python3-setuptools]: https://packages.debian.org/stable/python3-setuptools
-[python3-wheel]: https://packages.debian.org/stable/python3-wheel
 [python3]: https://packages.debian.org/stable/python3
-[qemu-user-static]: https://packages.debian.org/stable/qemu-user-static
 [rtl-sdr]: https://osmocom.org/projects/rtl-sdr/
 [s6-overlay]: https://github.com/just-containers/s6-overlay
 [SoapyRTLSDR]: https://github.com/pothosware/SoapyRTLSDR
-[SoapySDR]: https://github.com/pothosware/SoapySDR
 [socat]: https://packages.debian.org/stable/socat
 [wiedehopf/readsb]: https://github.com/wiedehopf/readsb
 [zlib1g]: https://packages.debian.org/stable/zlib1g

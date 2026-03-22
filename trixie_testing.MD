@@ -2,38 +2,14 @@
 
 ## What this is
 
-Currently, the SDR Enthusiasts Docker images are based on Debian Bookworm. Debian Trixie is the next version of Debian, and it is expected to be released in mid 2025. This migration will update the base images to use Debian Trixie, which will allow us to take advantage of the latest features and improvements in Debian.
-
-In order to ensure a smooth transition, each image will need to be tested on each architecture we support. This document will track the progress of the migration and provide instructions for testing the images.
-
-There is going to be no wide release until Trixie is officially released, all images have been tested, and all images have been confirmed to work on all architectures. I fully anticipate that we will have a working set of images before Trixie is released, but the intent is to give a few month's time past Trixie's release to ensure that everything is working as expected.
-
-The wider the participation in testing, the faster we can get to a stable release. If you want to help test the images, please follow the instructions below.
+Currently, the SDR Enthusiasts Docker images are based on Debian Bookworm. Debian Trixie is the next version of Debian, and it was released in the summer of 2025. We are migrating our containers to Trixie to ensure continued support and access to the latest features and security updates.
 
 > [!WARNING]
 > ***IF YOU ARE RUNNING ADSB.IM THIS DOES NOT APPLY TO YOU. TESTING OF THESE IMAGES WILL BE DONE WHEN THE MAINTAINERS OF ADSB.IM ARE READY. RUNNING ANY OF THESE COMMANDS WILL LIKELY BREAK YOUR SETUP.***
 
 ## Testing procedure
 
-For anyone who wants to help test the trixie migration, please follow these steps:
-
-```shell
-cd /path/to/your/docker-compose-directory
-curl -s https://raw.githubusercontent.com/sdr-enthusiasts/docker-baseimage/main/update_docker_compose.py -o update_docker_compose.py
-cp docker-compose.yml docker-compose.yml.bak
-python3 update_docker_compose.py
-```
-
-> [!WARNING]
-> **BEFORE RUNNING THIS SCRIPT ENSURE YOU HAVE A BACKUP OF YOUR `docker-compose.yml` FILE.**
-
-You can see all available options for the script by running:
-
-```shell
-python3 update_docker_compose.py --help
-```
-
-By default, it will replace any images currently in your `docker-compose.yml` file with any images we've updated to `debian trixie`. You can specify to only use "safe" images, which are images that have been tested and confirmed to work with your CPU's architecture.
+For anyone who wants to help test the trixie migration, you can use the `trixie-latest` tag on each of the SDR-E images.
 
 > [!IMPORTANT]
 > "Safe" images does not mean they're 100% without bugs. Safe images are those that have been tested and confirmed to work with your CPU's architecture by a user or developer (generally), but every person's setup is different and you may run in to a problem based on your specific setup.
@@ -50,7 +26,7 @@ Each image we intend to move over to trixie is listed below, along with its stat
 
 You can see if the build is working. That means we've successfully built the image on GitHub CI, but that does not mean it is ready for testing.
 
-The ready for testing column indicates that the image has been tested on at least one architecture (generally, but not always. Some images aren't applicable to my setup) and is ready for wider testing. You can see which architectures have been tested. Just because there is a ❌ in the column does not mean it will not work, it just means we have not tested it on that architecture yet.
+The ready for testing column indicates that the image has been tested on at least one architecture (generally, but not always. Some images aren't applicable to my setup) and is ready for wider testing. You can see which architectures have been tested and which need feedback.
 
 ## Matrix
 
@@ -81,65 +57,67 @@ The ready for testing column indicates that the image has been tested on at leas
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `acarshub` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `beast-splitter` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| `flightradar24` | ✅ | ✅ | ✅ | 🟡 | 🟡 |
-| `adsbhub` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `opensky` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `planefinder` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `acars_router` |  | ✅ | ✅ | 💬 | 💬 |
-| `airspy` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `reversewebproxy` | ✅ | ✅ | 💬 | 💬 | 💬 |
-| `radar1090` | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| [`acarshub`](https://github.com/sdr-enthusiasts/docker-acarshub) | ✅ | ✅ | ✅ | 💬 | ❌ |
+| [`beast-splitter`](https://github.com/sdr-enthusiasts/docker-beast-splitter) | ✅ | ✅ | 💬 | 💬 | 💬 |
+| [`flightradar24`](https://github.com/sdr-enthusiasts/docker-flightradar24) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`adsbhub`](https://github.com/sdr-enthusiasts/docker-adsbhub) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`opensky`](https://github.com/sdr-enthusiasts/docker-opensky-network) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`planefinder`](https://github.com/sdr-enthusiasts/docker-planefinder) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`acars_router`](https://github.com/sdr-enthusiasts/acars_router) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`airspy`](https://github.com/sdr-enthusiasts/airspy_adsb) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`reversewebproxy`](https://github.com/sdr-enthusiasts/docker-reversewebproxy) | ✅ | ✅ | 💬 | 💬 | 💬 |
+| [`radar1090`](https://github.com/sdr-enthusiasts/docker-radar1090) | ✅ | ✅ | 💬 | 💬 | 💬 |
 | `flightairmap` | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `shipfeeder` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| `aprs-tracker` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| `vessel-alert` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| [`shipfeeder`](https://github.com/sdr-enthusiasts/docker-shipfeeder) | ✅ | ✅ | 💬 | 💬 | 💬 |
+| [`aprs-tracker`](https://github.com/sdr-enthusiasts/docker-aprs-tracker) | ✅ | ✅ | 💬 | 💬 | 💬 |
+| [`vessel-alert`](https://github.com/sdr-enthusiasts/docker-vesselalert) | ✅ | ✅ | 💬 | 💬 | 💬 |
+| [`api2sbs`](https://github.com/sdr-enthusiasts/docker-api2sbs) | ✅ | ✅ | 💬 | 💬 | 💬 |
+| [`docker-telegraf-adsb`](https://github.com/sdr-enthusiasts/docker-telegraf-adsb) | ✅ | ✅ | 💬 | 💬 | 💬 |
 
 #### Base Image: `mlat-client`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `sdr-map` | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`sdr-map`](https://github.com/sdr-enthusiasts/docker-sdrmap) | ✅ | ✅ | ✅ | 💬 | 💬 |
 
 #### Base Image: `planefence_base`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `planefence` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| [`planefence`](https://github.com/sdr-enthusiasts/docker-planefence) | ✅ | ✅ | ✅ | ✅ | 💬 |
 
 #### Base Image: `soapy-full`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `rtlsdrairband` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| [`rtlsdr-airband`](https://github.com/sdr-enthusiasts/docker-rtlsdrairband) | ✅ | ✅ | 💬 | 💬 | ❌ |
 
 #### Base Image: `wreadsb`
 
 | Image Name | Build Works | Ready For Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `airnav` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| `radarvirtuel` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `tar1090` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| `ultrafeeder` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| `sdrplay-1090` | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| [`airnav`](https://github.com/sdr-enthusiasts/docker-airnavradar) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`radarvirtuel`](https://github.com/sdr-enthusiasts/docker-radarvirtuel) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`tar1090`](https://github.com/sdr-enthusiasts/docker-tar1090) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`ultrafeeder`](https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`sdrplay-1090`](https://github.com/sdr-enthusiasts/docker-sdrplay-beast1090) | ✅ | ✅ | 💬 | 💬 | ❌ |
 
 #### Base Image: `acars-decoder-soapy`
 
 | Image Name | Build Works | Ready for Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `acarsdec` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `dumpvdl2` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `vdlm2dec` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `dumphfdl` | ✅ | ✅ | ✅ | 💬 | 💬 |
-| `hfdlobserver` | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| [`acarsdec`](https://github.com/sdr-enthusiasts/docker-acarsdec) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`dumpvdl2`](https://github.com/sdr-enthusiasts/docker-dumpvdl2) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`vdlm2dec`](https://github.com/sdr-enthusiasts/docker-vdlm2dec) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`dumphfdl`](https://github.com/sdr-enthusiasts/docker-dumphfdl) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`hfdlobserver`](https://github.com/sdr-enthusiasts/docker-hfdlobserver) | ✅ | ✅ | ✅ | 💬 | 💬 |
 
 #### Base Image: `dump978-full`
 
 | Image Name | Build Works | Ready for Testing | AMD64 | ARM64 | ARMv7 |
 | -- | - | - | - | - | - |
-| `dump978` | ✅ | ✅ | 💬 | 💬 | 💬
-| `piaware` | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| [`dump978`](https://github.com/sdr-enthusiasts/docker-dump978) | ✅ | ✅ | ✅ | 💬 | 💬 |
+| [`piaware`](https://github.com/sdr-enthusiasts/docker-piaware) | ✅ | ✅ | ✅ | 💬 | 💬 |
 
 ## Tasks
 
@@ -164,9 +142,18 @@ The ready for testing column indicates that the image has been tested on at leas
 - [ ] Move back to main branch for the dumphfdl clone
   - [ ] docker-dumphfdl
   - [ ] docker-hfdlobserver
+- [ ] Fix trigger for tar1090->ultra to just use regular deploy
 
 ## Current blockers
 
-- hfdlobserver does not run. Incompatible with Python 3.13
-- docker-airnavradar does not build. Issue with the `libglib2.0-0` dependency and debian trixie.
-- piaware builds but does not run. It seems to be an issue with starting mlat-client and python packaging.
+**NONE!**
+
+## Deprecations
+
+- `acarshub` image: arm32 is no longer supported
+- `rtlsdrairband` image: arm32 is no longer supported
+- `sdrplay-beast1090` image: arm32 is no longer supported
+
+## Open Testing Questions
+
+- `rtlsdr-airband` image: Does the removal of mime-types library cause any problems?
